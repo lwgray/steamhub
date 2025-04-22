@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}StreamHub - Streaming Services{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Streaming Services</h1>
+<p class="lead mb-5">All your favorite streaming platforms in one convenient place.</p>
+
+<div class="row">
+    {% for service in services %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if service.attributes.logo and service.attributes.logo.data %}
+            <img src="{{ service.attributes.logo.data.attributes.url }}" class="card-img-top service-logo p-3" alt="{{ service.attributes.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ service.attributes.name }}</h5>
+                <p class="card-text">{{ service.attributes.description }}</p>
+                {% if service.attributes.link %}
+                <a href="{{ service.attributes.link }}" class="btn btn-primary">Launch</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

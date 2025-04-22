@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "featured_contents",
+  "info": {
+    "singularName": "featured-content",
+    "pluralName": "featured-contents",
+    "displayName": "Featured Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "banner": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

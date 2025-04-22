@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}StreamHub - Your Ultimate Entertainment Portal{% endblock %}
+
+{% block content %}
+<div class="featured-banner" style="background-image: url('{{ featured[0].attributes.banner.data.attributes.url if featured and featured[0].attributes.banner.data else "/static/default-banner.jpg" }}')">
+    <div class="featured-content">
+        <h1>Welcome to StreamHub</h1>
+        <p class="lead">Your Ultimate Entertainment Portal</p>
+        <p>Access premium content and immersive gaming experiences with just a single click.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">Streaming Services</h2>
+                <p class="card-text">Access all your favorite streaming platforms in one place. Watch movies, series, and shows from Netflix, Disney+, Amazon Prime, and more.</p>
+                <a href="/streaming" class="btn btn-primary">Explore Streaming</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">Gaming Zone</h2>
+                <p class="card-text">Jump directly into your gaming world of choice. Access Roblox, Minecraft, Fortnite and more with a single click.</p>
+                <a href="/gaming" class="btn btn-primary">Explore Games</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="mt-5 mb-4">Featured Content</h2>
+<div class="row">
+    {% for item in featured %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if item.attributes.image and item.attributes.image.data %}
+            <img src="{{ item.attributes.image.data.attributes.url }}" class="card-img-top" alt="{{ item.attributes.title }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ item.attributes.title }}</h5>
+                <p class="card-text">{{ item.attributes.description }}</p>
+                {% if item.attributes.link %}
+                <a href="{{ item.attributes.link }}" class="btn btn-sm btn-outline-primary">Learn More</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

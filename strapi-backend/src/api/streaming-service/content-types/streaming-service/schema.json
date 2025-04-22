@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "streaming_services",
+  "info": {
+    "singularName": "streaming-service",
+    "pluralName": "streaming-services",
+    "displayName": "Streaming Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}
