@@ -56,11 +56,12 @@ def get_featured_content():
         response.raise_for_status()
         
         data = response.json()
+        # Return the 'data' key which should contain the properly structured content
         return data.get('data', [])
     except requests.exceptions.RequestException as e:
         current_app.logger.error(f"Error fetching featured content: {e}")
         return []
-
+    
 def get_content_by_id(content_type, id):
     """
     Fetch specific content by ID

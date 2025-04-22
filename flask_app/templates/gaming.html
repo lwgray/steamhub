@@ -10,14 +10,14 @@
     {% for game in games %}
     <div class="col-md-4 mb-4">
         <div class="card h-100">
-            {% if game.attributes.image and game.attributes.image.data %}
-            <img src="{{ game.attributes.image.data.attributes.url }}" class="card-img-top game-logo p-3" alt="{{ game.attributes.title }}">
+            {% if game.image and game.image.url %}
+            <img src="{{ config.STRAPI_URL + game.image.url }}" class="card-img-top game-logo p-3" alt="{{ game.title }}">
             {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ game.attributes.title }}</h5>
-                <p class="card-text">{{ game.attributes.description }}</p>
-                {% if game.attributes.link %}
-                <a href="{{ game.attributes.link }}" class="btn btn-primary">Play Now</a>
+                <h5 class="card-title">{{ game.title }}</h5>
+                <p class="card-text">{{ game.description }}</p>
+                {% if game.link %}
+                <a href="{{ game.link }}" class="btn btn-primary">Play Now</a>
                 {% endif %}
             </div>
         </div>

@@ -22,6 +22,8 @@ def create_app():
     @app.route('/')
     def index():
         featured = get_featured_content()
+        if not isinstance(featured, list):
+            featured = []
         return render_template('index.html', featured=featured)
     
     @app.route('/streaming')

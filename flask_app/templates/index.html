@@ -3,7 +3,7 @@
 {% block title %}StreamHub - Your Ultimate Entertainment Portal{% endblock %}
 
 {% block content %}
-<div class="featured-banner" style="background-image: url('{{ featured[0].attributes.banner.data.attributes.url if featured and featured[0].attributes.banner.data else "/static/default-banner.jpg" }}')">
+<div class="featured-banner" style="background-image: url('{{ config.STRAPI_URL + featured[0].banner.url if featured and featured[0].banner else "/static/default-banner.jpg" }}')">
     <div class="featured-content">
         <h1>Welcome to StreamHub</h1>
         <p class="lead">Your Ultimate Entertainment Portal</p>
@@ -37,14 +37,14 @@
     {% for item in featured %}
     <div class="col-md-4 mb-4">
         <div class="card h-100">
-            {% if item.attributes.image and item.attributes.image.data %}
-            <img src="{{ item.attributes.image.data.attributes.url }}" class="card-img-top" alt="{{ item.attributes.title }}">
+            {% if item.image and item.image.url %}
+            <img src="{{ config.STRAPI_URL + item.image.url }}" class="card-img-top" alt="{{ item.title }}">
             {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ item.attributes.title }}</h5>
-                <p class="card-text">{{ item.attributes.description }}</p>
-                {% if item.attributes.link %}
-                <a href="{{ item.attributes.link }}" class="btn btn-sm btn-outline-primary">Learn More</a>
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                {% if item.link %}
+                <a href="{{ item.link }}" class="btn btn-sm btn-outline-primary">Learn More</a>
                 {% endif %}
             </div>
         </div>

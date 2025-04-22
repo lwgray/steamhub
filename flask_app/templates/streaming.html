@@ -10,14 +10,14 @@
     {% for service in services %}
     <div class="col-md-4 mb-4">
         <div class="card h-100">
-            {% if service.attributes.logo and service.attributes.logo.data %}
-            <img src="{{ service.attributes.logo.data.attributes.url }}" class="card-img-top service-logo p-3" alt="{{ service.attributes.name }}">
+            {% if service.logo %}
+            <img src="{{ config.STRAPI_URL + service.logo.url }}" class="card-img-top service-logo p-3" alt="{{ service.name }}">
             {% endif %}
             <div class="card-body">
-                <h5 class="card-title">{{ service.attributes.name }}</h5>
-                <p class="card-text">{{ service.attributes.description }}</p>
-                {% if service.attributes.link %}
-                <a href="{{ service.attributes.link }}" class="btn btn-primary">Launch</a>
+                <h5 class="card-title">{{ service.name }}</h5>
+                <p class="card-text">{{ service.description }}</p>
+                {% if service.link %}
+                <a href="{{ service.link }}" class="btn btn-primary">Launch</a>
                 {% endif %}
             </div>
         </div>
