@@ -1,6 +1,32 @@
 import path from 'path';
 
 export default ({ env }) => {
+  // For production in Heroku
+  if (env('NODE_ENV') === 'production') {
+    // Parse the database URL provided by Heroku
+    const databaseUrl = env('DATABASE_URL');
+    let ssl = env.bool('DATABASE_SSL', false);
+
+    // Heroku requires SSL
+    if (ssl) {
+      ssl = {
+        rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false)
+      };
+    }
+
+    return {
+      connection: {
+        client: 'postgres',
+        connection: {
+          connectionString: databaseUrl,
+          ssl,
+        },
+        acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
+      },
+    };
+  }
+
+  // Development configuration (SQLite)
   const client = env('DATABASE_CLIENT', 'sqlite');
 
   const connections = {
