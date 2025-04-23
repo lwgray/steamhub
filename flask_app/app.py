@@ -3,7 +3,9 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 from .api.routes import api_bp
-from .services.strapi_service import get_streaming_services, get_games, get_featured_content
+from .services.strapi_service import get_streaming_services, get_games, get_featured_content, get_strapi_headers
+import requests
+from flask import current_app
 
 # Load environment variables
 load_dotenv()
@@ -36,6 +38,20 @@ def create_app():
         games = get_games()
         return render_template('gaming.html', games=games)
     
+
+    @app.route('/test-connection')
+    def test_connection():
+        url = f"{current_app.config['STRAPI_URL']}/api/streaming-services?populate=*"
+        headers = get_strapi_headers()
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
+                return jsonify({"status": "success", "message": "Connected to Strapi successfully"})
+            else:
+                return jsonify({"status": "error", "message": f"Connection failed with status code {response.status_code}"})
+        except Exception as e:
+            return jsonify({"status": "error", "message": str(e)})
+
     return app
 
 
