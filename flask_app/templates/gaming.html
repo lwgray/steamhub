@@ -11,7 +11,7 @@
     <div class="col-md-4 mb-4">
         <div class="card h-100">
             {% if game.image and game.image.url %}
-            <img src="{{ config.STRAPI_URL + game.image.url }}" class="card-img-top game-logo p-3" alt="{{ game.title }}">
+            <img src="{{ game.image.url }}" class="card-img-top game-logo p-3" alt="{{ game.title }}">
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ game.title }}</h5>
