@@ -11,7 +11,7 @@
     <div class="col-md-4 mb-4">
         <div class="card h-100">
             {% if service.logo %}
-            <img src="{{ config.STRAPI_URL + service.logo.url }}" class="card-img-top service-logo p-3" alt="{{ service.name }}">
+            <img src="{{ service.logo.url }}" class="card-img-top service-logo p-3" alt="{{ service.name }}">
             {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ service.name }}</h5>
